@@ -11,9 +11,20 @@ Bem-vindo ao **App de Hortifrúti**! Um aplicativo para comprar produtos frescos
 
 ## Capturas de Tela
 
+- Tela inicial.
 ![Screenshot 1](screenshots/1.png)
-![Screenshot 2](screenshot2.png)
-![Screenshot 3](screenshot3.png)
+
+- Tela do carrinho.
+![Screenshot 2](screenshots/2.png)
+
+- Tela de remover um item.
+![Screenshot 3](screenshots/3.png)
+
+- Tela de remover todos os itens.
+![Screenshot 4](screenshots/4.png)
+
+- Tela do carrinho vazio.
+![Screenshot 5](screenshots/5.png)
 
 ## Tecnologias Utilizadas
 

@@ -11,7 +11,7 @@ Bem-vindo ao **App de Hortifrúti**! Um aplicativo para comprar produtos frescos
 
 ## Capturas de Tela
 
-![Screenshot 1](screenshot1.png)
+![Screenshot 1](screenshots/1)
 ![Screenshot 2](screenshot2.png)
 ![Screenshot 3](screenshot3.png)
 

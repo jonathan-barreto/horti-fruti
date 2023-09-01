@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:store/controller/fruta_controller.dart';
-import 'package:store/model/fruta_model.dart';
+import 'package:store/app/controllers/home_page_controller.dart';
+import 'package:store/app/models/home_page_model.dart';
+import 'package:store/widgets/add_button.dart';
+import 'package:store/widgets/card_image.dart';
+import 'package:store/widgets/info_card.dart';
+import 'package:store/constantes.dart';
 
 class CardFruta extends StatelessWidget {
-  final FrutaController controller;
-  final FrutaModel data;
-  final int index;
+  final HomePageModel data;
+  final HomePageController controller;
 
   const CardFruta({
     super.key,
-    required this.controller,
     required this.data,
-    required this.index,
+    required this.controller,
   });
 
   @override
@@ -19,76 +21,26 @@ class CardFruta extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.backgroundColorCard,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Image.network(
-                'http://192.168.0.106/hortifruti/images/${data.image}',
-              ),
-            ),
+          CardImage(
+            image: '${Url.urlImage}${data.image}',
           ),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        '${data.nome?.toUpperCase()}',
-                        style: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: 'R\$${data.preco} ',
-                          style: const TextStyle(
-                            color: Color(0xff454ADE),
-                            fontWeight: FontWeight.bold,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: '/ ${data.peso}',
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                InfoCard(
+                  nome: '${data.nome}',
+                  preco: '${data.preco}',
+                  peso: '${data.peso}',
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.addToCart(data);
-                  },
-                  style: const ButtonStyle(
-                    textStyle: MaterialStatePropertyAll(
-                      TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    backgroundColor: MaterialStatePropertyAll(
-                      Color(0xff454ADE),
-                    ),
-                    fixedSize: MaterialStatePropertyAll(
-                      Size(500, 50),
-                    ),
-                  ),
-                  child: const Text('Add to cart'),
+                AddButton(
+                  data: data,
+                  controller: controller,
                 ),
               ],
             ),

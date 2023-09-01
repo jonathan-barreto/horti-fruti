@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/controller/fruta_controller.dart';
+import 'package:store/app/controllers/home_page_controller.dart';
 
 class Carrinho extends StatefulWidget {
-  final FrutaController controller;
+  final HomePageController controller;
 
   const Carrinho({
     super.key,
@@ -20,13 +20,14 @@ class _CarrinhoState extends State<Carrinho> {
       alignment: Alignment.center,
       children: [
         IconButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed(
+          onPressed: () async {
+            await Navigator.of(context).pushNamed(
               '/cart',
               arguments: {
                 "args": widget.controller,
               },
             );
+            widget.controller.returnLenghtToCart();
           },
           icon: const Icon(
             Icons.shopping_cart_sharp,

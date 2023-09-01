@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store/model/cart_model.dart';
+import 'package:store/app/models/cart_model.dart';
 
-class CartController extends ChangeNotifier {
+class CartPageController extends ChangeNotifier {
   bool isLoading = true;
   List<CartModel> data = [];
   double? total;
@@ -43,6 +43,12 @@ class CartController extends ChangeNotifier {
   void upgradeData() async {
     data = [];
     notifyListeners();
+  }
+
+  void removeAllItemsToCart() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('items');
+    upgradeData();
   }
 
   void removeItem(int index) async {

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:store/controller/cart_controller.dart';
-import 'package:store/model/cart_model.dart';
+import 'package:store/app/controllers/cart_page_controller.dart';
+import 'package:store/app/models/cart_model.dart';
+import 'package:store/constantes.dart';
+import 'package:store/widgets/cart_image.dart';
+import 'package:store/widgets/info_card.dart';
+import 'package:store/widgets/quantidade.dart';
 
 class CartItems extends StatefulWidget {
   final int index;
   final CartModel data;
-  final CartController controller;
+  final CartPageController controller;
 
   const CartItems({
     super.key,
@@ -22,7 +26,7 @@ class _CartItemsState extends State<CartItems> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(10),
       child: Container(
         height: 100,
         width: double.infinity,
@@ -32,127 +36,16 @@ class _CartItemsState extends State<CartItems> {
         ),
         child: Row(
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Image.network(
-                  'http://192.168.0.106/hortifruti/images/${widget.data.image}',
-                ),
-              ),
+            CartImage(image: '${Url.urlImage}${widget.data.image}'),
+            InfoCard(
+              nome: '${widget.data.nome}',
+              preco: '${widget.data.preco}',
+              peso: '${widget.data.peso}',
             ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${widget.data.nome?.toUpperCase()}',
-                    style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text: 'R\$ ${widget.data.preco}',
-                      style: const TextStyle(
-                        color: Color(0xff454ADE),
-                        fontWeight: FontWeight.bold,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' / ${widget.data.peso}',
-                          style: TextStyle(
-                            color: Colors.grey[600],
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (widget.data.quantidade == 1) {
-                        showDialog(
-                          context: (context),
-                          builder: (context) {
-                            return Dialog(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Image.asset('assets/delete.png'),
-                                    const Text(
-                                      'Deseja remover este item do carrinho?',
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        TextButton(
-                                          onPressed: () {
-                                            widget.controller.removeItem(widget.index);
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('Sim'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('Não'),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      } else {
-                        widget.controller.decrementQuantidade(widget.index);
-                      }
-                    },
-                    child: const Text(
-                      '-',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '${widget.data.quantidade}',
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      widget.controller.incrementQuantidade(widget.index);
-                    },
-                    child: const Text(
-                      '+',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            Quantidade(
+              data: widget.data,
+              index: widget.index,
+              controller: widget.controller,
             ),
           ],
         ),

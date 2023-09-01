@@ -1,11 +1,11 @@
-class FrutaModel {
+class HomePageModel {
   String? id;
   String? nome;
   String? preco;
   String? peso;
   String? image;
 
-  FrutaModel({
+  HomePageModel({
     this.id,
     this.nome,
     this.preco,
@@ -13,7 +13,7 @@ class FrutaModel {
     this.image,
   });
 
-  FrutaModel.fromJson(Map<String, dynamic> json) {
+  HomePageModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['nome'];
     preco = json['preco'];

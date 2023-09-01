@@ -3,26 +3,38 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store/model/cart_model.dart';
-import 'package:store/model/fruta_model.dart';
+import 'package:store/app/models/cart_model.dart';
+import 'package:store/app/models/home_page_model.dart';
+import 'package:store/constantes.dart';
 
-class FrutaController extends ChangeNotifier {
+class HomePageController extends ChangeNotifier {
   bool isLoading = true;
-  List<FrutaModel> data = [];
+  List<HomePageModel> data = [];
   int itemsTotal = 0;
 
-  void fetch() async {
+  void showLoading() {
     isLoading = true;
-    var url = Uri.parse('http://192.168.0.106/hortifruti/');
-    var response = await http.get(url);
-    var json = jsonDecode(response.body) as List;
-    data.addAll(json.map((e) => FrutaModel.fromJson(e)));
-    returnLenghtToCart();
+    notifyListeners();
+  }
+
+  void hideLoading() {
     isLoading = false;
     notifyListeners();
   }
 
-  void addToCart(FrutaModel data) async {
+  void fetch() async {
+    showLoading();
+   
+    var url = Uri.parse(Url.url);
+    var response = await http.get(url);
+    var json = jsonDecode(response.body) as List;
+    data.addAll(json.map((e) => HomePageModel.fromJson(e)));
+
+    returnLenghtToCart();
+    hideLoading();
+  }
+
+  void addToCart(HomePageModel data) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? items = prefs.getStringList('items');
     int index = 0;
@@ -76,16 +88,10 @@ class FrutaController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeToCart() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('items');
-    returnLenghtToCart();
-    notifyListeners();
-  }
-
   Future<void> returnLenghtToCart() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? items = prefs.getStringList('items');
     itemsTotal = items?.length ?? 0;
+    notifyListeners();
   }
 }

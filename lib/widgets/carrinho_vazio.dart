@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store/constantes.dart';
 
 class CarrinhoVazio extends StatelessWidget {
   const CarrinhoVazio({super.key});
@@ -8,15 +9,18 @@ class CarrinhoVazio extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const Text(
-          'CARRINHO VAZIO!',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
+        const Center(
+          child: Text(
+            'CARRINHO VAZIO!',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: AppColors.textColor,
+            ),
           ),
         ),
         Image.asset(
-          'assets/carrinho_vazio.png',
+          'assets/fruta.gif',
         ),
       ],
     );

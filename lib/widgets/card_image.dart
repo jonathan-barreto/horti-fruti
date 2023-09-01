@@ -10,12 +10,9 @@ class CardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Image.network(image),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Image.network(image),
     );
   }
 }

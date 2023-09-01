@@ -15,28 +15,30 @@ class AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        controller.addToCart(data);
-      },
-      style: const ButtonStyle(
-        textStyle: MaterialStatePropertyAll(
-          TextStyle(
-            fontSize: 20,
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () {
+          controller.addToCart(data);
+        },
+        style: const ButtonStyle(
+          textStyle: MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 20,
+            ),
+          ),
+          backgroundColor: MaterialStatePropertyAll(
+            AppColors.primaryColor,
+          ),
+          fixedSize: MaterialStatePropertyAll(
+            Size(500, 20),
           ),
         ),
-        backgroundColor: MaterialStatePropertyAll(
-          AppColors.primaryColor,
-        ),
-        fixedSize: MaterialStatePropertyAll(
-          Size(500, 50),
-        ),
-      ),
-      child: const Text(
-        'ADICIONAR',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          letterSpacing: .5,
+        child: const Text(
+          'ADICIONAR',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: .5,
+          ),
         ),
       ),
     );

@@ -38,6 +38,7 @@ class _CartItemsState extends State<CartItems> {
           children: [
             CartImage(image: '${Url.urlImage}${widget.data.image}'),
             InfoCard(
+              flex: 2,
               nome: '${widget.data.nome}',
               preco: '${widget.data.preco}',
               peso: '${widget.data.peso}',

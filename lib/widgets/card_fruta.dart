@@ -26,8 +26,10 @@ class CardFruta extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CardImage(
-            image: '${Url.urlImage}${data.image}',
+          Expanded(
+            child: CardImage(
+              image: '${Url.urlImage}${data.image}',
+            ),
           ),
           Expanded(
             child: Column(

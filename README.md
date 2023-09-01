@@ -1,16 +1,26 @@
-# store
+# App de Hortifrúti
 
-A new Flutter project.
+Bem-vindo ao **App de Hortifrúti**! Um aplicativo para comprar produtos frescos de hortifrúti de forma conveniente.
 
-## Getting Started
+## Funcionalidades
 
-This project is a starting point for a Flutter application.
+- Explore uma variedade de produtos frescos, como frutas e legumes.
+- Adicione produtos ao seu carrinho de compras.
+- Visualize detalhes dos produtos, incluindo preço e disponibilidade.
+- Finalize a compra com facilidade.
 
-A few resources to get you started if this is your first Flutter project:
+## Capturas de Tela
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Screenshot 1](screenshot1.png)
+![Screenshot 2](screenshot2.png)
+![Screenshot 3](screenshot3.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tecnologias Utilizadas
+
+- Flutter para o desenvolvimento do aplicativo móvel.
+- Php para o desenvolvimento da API.
+- SharedPreferences para salvar os dados do carrinho.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT.
